@@ -18,7 +18,10 @@ public class App {
     }
 
     public static void main(String[] args) {
-        //
-        System.out.println(new App().getGreeting());
+        //CREATE NEW CASH REGISTER
+        CashRegister cashRegister = new CashRegister();
+
+        //WITHDRAW
+        cashRegister.withdraw(10);
     }
 }
