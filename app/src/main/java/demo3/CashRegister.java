@@ -10,45 +10,79 @@ public class CashRegister {
      * 
      */
     private HashMap<String, Integer> register = new HashMap<String, Integer>();
-
-    private int hundredDollar = 10; // 1000
-    private int fiftyDollar = 10; // 500
-    private int twentyDollar = 10; // 200
-    private int tenDollar = 10; // 100
-    private int fiveDollar = 10; // 50
-    private int oneDollar = 10; // 10
-    private int quarter = 4; // 1
-    private int dime = 10; // 1
-    private int nickel = 20; // 1
-    private int cent = 100; // 1
     private double totalValue = 1864;
 
+    public CashRegister() {
+        register.put("hundredDollar", 10);
+        register.put("fiftyDollar", 10);
+        register.put("twentyDollar", 10);
+        register.put("tenDollar", 10);
+        register.put("fiveDollar", 10);
+        register.put("oneDollar", 10);
+        register.put("quarter", 4);
+        register.put("dime", 10);
+        register.put("nickel", 20);
+        register.put("cent", 100);
+    }
+
     public String withdraw(double withdrawAmount) {
- 
-        //CHECK AGAINST THE TOTALVALUE
+
+        // CHECK AGAINST THE TOTALVALUE
         double expectedAmount = Calculator.calculate(withdrawAmount, totalValue, "-");
-        if(expectedAmount >= 0) {
+        if (expectedAmount >= 0) {
 
             if (changeMaker(withdrawAmount)) {
                 totalValue = Calculator.calculate(withdrawAmount, totalValue, "-");
                 System.out.println("totalValue: " + totalValue);
             } else {
-                 //CANNOT EXECUTE TRANSACTION
+                // CANNOT EXECUTE TRANSACTION
 
             }
 
         } else {
-            //CANNOT EXECUTE TRANSACTION
+            // CANNOT EXECUTE TRANSACTION
         }
 
         return "";
 
+    }
+
+    public String deposit(double depositAmount) {
+
         totalValue = Calculator.calculate(depositAmount, totalValue, "+");
         System.out.println("totalValue: " + totalValue);
 
-    public boolean changeMaker(double withdrawAmount) {
-        // if withdrawAmount greater than 100 && hundredDollar > 0
+        return "";
+    }
 
+    public boolean changeMaker(double withdrawAmount) {
+        System.out.println("coming through here");
+        HashMap<String, Integer> copiedRegister = new HashMap<String, Integer>();
+        copiedRegister.putAll(register);
+
+        var wrapper = new Object() {
+            double withdrawAmount2 = withdrawAmount;
+        };
+
+        copiedRegister.replaceAll((key, value) -> {
+            int aCopy = value;
+            while (wrapper.withdrawAmount2 > 0) {
+                wrapper.withdrawAmount2 -= 0;
+                aCopy--;
+            }
+            return aCopy;
+
+            // System.out.println("key: " + key + " value: " + value);
+        });
+
+        return false;
     }
 
 }
+
+/*
+ * for (adsjfklfajds : ajsdkfl;jsadk)
+ * 
+ * lambda list.forEach(s -> {})
+ * 
+ */
